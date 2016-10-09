@@ -1,0 +1,240 @@
+/*
+*
+* Custom Style Created by Leonard.
+*
+*/
+
+
+/*
+* padding
+*/
+
+.padding-top10 {
+    padding-top: 5px !important
+}
+
+.padding-top10 {
+    padding-top: 10px !important
+}
+
+.padding-top20 {
+    padding-top: 20px !important
+}
+
+.padding-top30 {
+    padding-top: 30px !important
+}
+
+.padding-top40 {
+    padding-top: 40px !important
+}
+
+.padding-top50 {
+    padding-top: 50px !important
+}
+
+.padding-top60 {
+    padding-top: 60px !important
+}
+
+.padding-top70 {
+    padding-top: 70px !important
+}
+
+.padding-top80 {
+    padding-top: 80px !important
+}
+
+.padding-top90 {
+    padding-top: 90px !important
+}
+
+.padding-top100 {
+    padding-top: 100px !important
+}
+
+
+/*
+* Stick footer
+*/
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+/*
+* Tags Design
+*/
+
+.tag-number-new {
+    font-weight: 300;
+    font-size: 0.8rem;
+    background-color: #fff;
+    border-radius: 70px;
+}
+
+.tag-number-badge {
+    min-width: 3rem;
+    padding: 0 6px;
+    text-align: center;
+    font-size: 1rem;
+    line-height: inherit;
+    color: #000;
+    /* position: absolute; */
+    right: 15px;
+    box-sizing: border-box;
+}
+
+
+/*
+* Navbar
+*/
+
+#search-nav {
+    /*margin-left:80px;*/
+}
+
+#search-bar {
+    font-size: 16px;
+    font-weight: 300;
+    margin-left: 80px;
+    padding: 0 45px 0 15px;
+}
+
+
+/*
+* pushpin
+*/
+
+#info-bar {
+    position: fixed;
+    overflow-y: scroll;
+    left: 41%;
+    height: 90%;
+}
+
+#search-results {
+    position: fixed;
+    overflow-y: scroll;
+    height: 90%;
+}
+
+#search-button {
+    margin-top: 20px;
+    margin-left: -20px;
+    font-size: 40px;
+    cursor:pointer;
+}
+
+
+/*
+*  Mobile Overlay
+*/
+
+.overlay {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 9999;
+    overflow-y: scroll;
+    display: none;
+}
+
+.overlay-close {
+    color: #000;
+    position: absolute;
+    top: 0px;
+    font-size: 30px;
+    right: 20px;
+    cursor: pointer;
+}
+
+
+/*
+* Search Results
+*/
+
+@media (max-width: 991px) {
+    #mobile-booking {
+        display: block;
+    }
+}
+
+.stock-price {
+    font-size: 20px;
+}
+
+.stock-price-change {
+    font-size: 15px;
+    color: red;
+}
+
+.stock-price-change-up {
+    font-size: 15px;
+    color: green;
+}
+
+#search-result-number {
+    margin-right: 36px !important;
+    font-size: 18px !important;
+}
+
+
+/*
+* Basket
+*/
+
+.basket {
+    width: 200px;
+}
+
+.modal {
+    max-height: 100% !important;
+    width: 80% !important;
+}
+
+.basket-input{
+top: 120px;
+margin-top: 25px;
+padding: 1px 0 0 0;
+z-index: 2;
+}
+
+.basket-wrapper{
+  margin: 0 12px;
+transition: margin .25s ease;
+}
+
+.basket-input-box{
+  display: block;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    height: 45px;
+    margin: 0;
+    padding: 0 45px 0 15px;
+    border: 0;
+}
+
+/*
+*
+* Company Content
+*/
+
+.research-company{
+  font-size:35px;
+}
+
+.btn{
+  border-radius: 50px !important;
+}

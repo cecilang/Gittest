@@ -1,0 +1,49 @@
+{
+  "categoryName": "self driving",
+  "categories": [
+  {
+    "Object1": "gm",
+    "Object2": "c.selfdriving",
+    "DissimDist": 0.5378763044
+  },
+  {
+    "Object1": "tesla",
+    "Object2": "c.selfdriving",
+    "DissimDist": 0.5542848296
+  },
+  {
+    "Object1": "mobileye",
+    "Object2": "c.selfdriving",
+    "DissimDist": 0.5985049248
+  },
+  {
+    "Object1": "c.electricvehicle",
+    "Object2": "c.selfdriving",
+    "Dissim Dist": 0.6063193209
+  },
+  {
+    "Object1": "c.internetofthings",
+    "Object2": "c.selfdriving",
+    "Dissim Dist": 0.6632966712
+  },
+  {
+    "Object1": "ups",
+    "Object2": "c.selfdriving",
+    "DissimDist": 0.6786464267
+  },
+  {
+    "Object1": "p.uber",
+    "Object2": "c.selfdriving",
+    "DissimDist": 0.72539036
+  },
+  {
+    "Object1": "c.virtualreality",
+    "Object2": "c.selfdriving",
+    "DissimDist": 0.730550529
+  },
+  {
+    "Object1": "fordmotor",
+    "Object2": "c.selfdriving",
+    "DissimDist": 0.7341145577
+  }
+]}

@@ -1,0 +1,17 @@
+<h1>{{ title }}</h1>
+  <h3>A stock discovery mind map</h3>
+
+  <h3>Search Stock</h3>
+  <form action="/search" method="post">
+    <input type="text" name="searchbar", placeholder="Type stock here">
+    <button type="search">Search</button>
+  </form>
+  <h3>Betafishers researched these after {{selfdriving.categoryName}}
+  </h3>
+  </ul>
+      {{# each selfdriving.categories}}
+        <li>
+          {{this.Object1}}
+        </li>
+      {{/each}}
+  </ul>
