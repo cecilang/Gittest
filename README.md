@@ -4,4 +4,4 @@
 
 2. Amazon clone: Made with Nodejs + Express + Handlebars + MongoDB (MEHN) in 3 days
 
-Next up: a social feed app with Nodejs + Express + Angular + MongoDB (MEAN)
+Next up: a twitter clone with Nodejs + Express + Angular + MongoDB (MEAN)

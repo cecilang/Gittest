@@ -1,0 +1,72 @@
+<html ng-app="spouts">
+  <head>
+    <meta charset="utf-8">
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script src="https://use.fontawesome.com/98c3c7f95e.js"></script>
+
+    <!--setup angular controller-->
+    <script type="text/javascript">
+      var app = angular.module('spouts', []);
+
+      app.controller('SpoutsCtrl',function($scope, $http){
+
+        $scope.submitNewSpout = function () {
+          $http.post('/spouts', {newSpout: $scope.newSpout}).then(function(){
+            alert('Successfully spouted!');
+          });
+        };
+
+        $http.get('/spouts').then(function(response){
+          $scope.spouts = response.data
+        });
+      });
+    </script>
+
+    <title>Betafish Spouts</title>
+  </head>
+
+  <body ng-controller="SpoutsCtrl">
+    <div class="container">
+      <h1 class="page-title">Betafish Spouts</h1>
+    </div>
+    <div class="container feed">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Login:</h3>
+          <br><br>
+          <input type="text" size="30" name="name" placeholder="Username">
+          <br><br>
+          <input type="password" size="30" name="name" placeholder="Password">
+
+        </div>
+        <div class="col-md-8">
+          <div class="new-spout">
+            <div class="container">
+              <div class="col-md-6">
+                  <input type="text" class="form-control" ng-model="newSpout" placeholder="What do you want to spout about today?">
+              </div>
+              <div class="col-md-2">
+                  <button type="button" class="btn btn-primary" name="submit" ng-click="submitNewSpout()">Spout!</button>
+                  <!--insert {{ newSpout }} here to see how two-way binding works-->
+              </div>
+            </div>
+          </div>
+
+          <!--rerender each spout-->
+          <h4 ng-repeat= "spout in spouts">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            {{ spout }}
+          </h4>
+        </div>
+      </div>
+    </div>
+
+      <!-- Latest compiled and minified JavaScript -->
+
+  <script   src="http://code.jquery.com/jquery-3.1.1.slim.min.js"   integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="   crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
