@@ -1,0 +1,12 @@
+{
+  "name": "betafishspouts",
+  "main": "server.js",
+  "private": true,
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jwt-simple": "^0.5.0",
+    "mongodb": "^2.2.10"
+  }
+}
