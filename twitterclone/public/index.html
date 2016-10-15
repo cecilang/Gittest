@@ -5,68 +5,103 @@
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="angular-route.js"></script>
     <script src="https://use.fontawesome.com/98c3c7f95e.js"></script>
 
     <!--setup angular controller-->
     <script type="text/javascript">
-      var app = angular.module('spouts', []);
+      var app = angular.module('spouts', ['ngRoute']);
 
-      app.controller('SpoutsCtrl',function($scope, $http){
+    //Angular route configuration
+      app.config(function($routeProvider, $locationProvider){
+        $routeProvider
+        //routing for index.html
+        .when('/', {
+          templateUrl: 'home.html',
+          controller: 'HomeController',
+        })
+        //routing for signup.html
+        .when('/signup', {
+          templateUrl: 'signup.html',
+          controller: 'SignupController',
+        });
 
+      });
+
+    //HomeController setup
+      app.controller('HomeController',function($scope, $http){
+
+      //if user click on spout button, create a new spout (post)
         $scope.submitNewSpout = function () {
+          //send server new spout and callback
           $http.post('/spouts', {newSpout: $scope.newSpout}).then(function(){
-            alert('Successfully spouted!');
+            getSpouts (); //display all spouts
+            $scope.newSpout = '' //to clear input field
           });
         };
 
-        $http.get('/spouts').then(function(response){
-          $scope.spouts = response.data
-        });
+      //if user click on trash can, remove a spout (put)
+        $scope.removeSpout = function(spout) {
+          $http.put('/spouts/remove', {spout: spout}).then(function(){
+            //put req to this route, with spout data to be removed, then call spouts array
+            getSpouts (); //display all spouts
+            $scope.newSpout = '' //to clear input field
+          });
+        };
+
+      //user signin
+        $scope.signin = function() {
+          $http.put('/users/signin', {email: $scope.email, password: $scope.password}).then(function(){
+            //set up error msgs
+            alert('Sign in success!');
+          }, function(err){
+            alert('Invalid credentials, please try again.')
+          });
+        };
+
+      // if no new spout
+        function getSpouts() {
+          $http.get('/spouts').then(function(response){
+            $scope.spouts = response.data
+          });
+        };
+
+        getSpouts ();
       });
+
+    //SignupController setup
+      app.controller('SignupController',function($scope, $http){
+
+        $scope.submitSignup = function (){
+          var newUser = {
+            email: $scope.email,
+            password: $scope.password,
+          };
+          $http.post('/users', newUser).then(function(){
+            //post req to server for newUser
+            alert('account successfully created!');
+            $scope.newSpout = '' //to clear input field
+          });
+        }
+      });
+
     </script>
 
     <title>Betafish Spouts</title>
   </head>
 
-  <body ng-controller="SpoutsCtrl">
+  <body>
     <div class="container">
-      <h1 class="page-title">Betafish Spouts</h1>
+      <h1 class="page-title">
+        <a href="#/">Betafish Spouts</a> <!--use # before route because ng-view renders the same page-->
+      </h1>
     </div>
-    <div class="container feed">
-      <div class="row">
-        <div class="col-md-4">
-          <h3>Login:</h3>
-          <br><br>
-          <input type="text" size="30" name="name" placeholder="Username">
-          <br><br>
-          <input type="password" size="30" name="name" placeholder="Password">
+    <div ng-view></div> <!--index.html contents moved to a home.html-->
 
-        </div>
-        <div class="col-md-8">
-          <div class="new-spout">
-            <div class="container">
-              <div class="col-md-6">
-                  <input type="text" class="form-control" ng-model="newSpout" placeholder="What do you want to spout about today?">
-              </div>
-              <div class="col-md-2">
-                  <button type="button" class="btn btn-primary" name="submit" ng-click="submitNewSpout()">Spout!</button>
-                  <!--insert {{ newSpout }} here to see how two-way binding works-->
-              </div>
-            </div>
-          </div>
-
-          <!--rerender each spout-->
-          <h4 ng-repeat= "spout in spouts">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            {{ spout.text }}
-          </h4>
-        </div>
-      </div>
-    </div>
-
-      <!-- Latest compiled and minified JavaScript -->
+    <!-- Latest compiled and minified JavaScript -->
 
   <script   src="http://code.jquery.com/jquery-3.1.1.slim.min.js"   integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="   crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
   </body>
 </html>

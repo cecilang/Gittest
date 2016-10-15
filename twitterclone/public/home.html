@@ -1,0 +1,37 @@
+<div class="container feed">
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Login and spout!</h3>
+      <br><br>
+      <input type="text" size="30" ng-model="email" placeholder="Email">
+      <br><br>
+      <input type="password" size="30" ng-model="password" placeholder="Password">
+      <br><br>
+      <button type="button" class="btn btn-success" name="button" ng-click="signin()">Login and Spout!</button>
+      <br><br>
+      <p>
+        Not a member yet? <a href="#/signup">Sigup here</a> <!--use # before route because it is re-rendered by ng-view and hence technically not a new route-->
+      </p>
+    </div>
+    <div class="col-md-8">
+      <div class="new-spout">
+        <div class="container">
+          <div class="col-md-6">
+              <input type="text" class="form-control" ng-model="newSpout" placeholder="What do you want to spout about today?">
+          </div>
+          <div class="col-md-2">
+              <button type="button" class="btn btn-primary" name="submit" ng-click="submitNewSpout()">Spout!</button>
+              <!--insert {{ newSpout }} here to see how two-way binding works-->
+          </div>
+        </div>
+      </div>
+
+      <!--rerender each spout-->
+      <h4 ng-repeat= "spout in spouts">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        {{ spout.text }} <!--singular spout-->
+        <a href ng-click="removeSpout(spout)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+      </h4>
+    </div>
+  </div>
+</div>
