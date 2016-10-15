@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script type="text/javascript" src="angular.min.js"></script>
     <script type="text/javascript" src="angular-route.js"></script>
+    <script type="text/javascript" src="angular-cookies.js"></script>
     <script src="https://use.fontawesome.com/98c3c7f95e.js"></script>
 
     <!--setup angular controller-->
     <script type="text/javascript">
-      var app = angular.module('spouts', ['ngRoute']);
+      var app = angular.module('spouts', ['ngRoute', 'ngCookies']);
 
     //Angular route configuration
       app.config(function($routeProvider, $locationProvider){
@@ -25,16 +26,25 @@
           templateUrl: 'signup.html',
           controller: 'SignupController',
         });
-
       });
 
-    //HomeController setup
-      app.controller('HomeController',function($scope, $http){
+    app.run(function($rootScope, $cookies) {
+      if ($cookies.get('token') && $cookies.get('currentUser')) {
+        $rootScope.token = $cookies.get('token');
+        $rootScope.currentUser = $cookies.get('currentUser');
+      }
+    });
 
-      //if user click on spout button, create a new spout (post)
+    //HomeController setup
+      app.controller('HomeController',function($rootScope, $scope, $http, $cookies){ //$rootScope enables an object to be shared with different controllers
+
+      //reate a new spout (post)
         $scope.submitNewSpout = function () {
           //send server new spout and callback
-          $http.post('/spouts', {newSpout: $scope.newSpout}).then(function(){
+          $http.post('/spouts',
+          {newSpout: $scope.newSpout},
+          {headers: {'authorization': $rootScope.token}})
+          .then(function(){
             getSpouts (); //display all spouts
             $scope.newSpout = '' //to clear input field
           });
@@ -42,7 +52,10 @@
 
       //if user click on trash can, remove a spout (put)
         $scope.removeSpout = function(spout) {
-          $http.put('/spouts/remove', {spout: spout}).then(function(){
+          $http.put('/spouts/remove',
+          {spout: spout},
+          {headers: {'authorization': $rootScope.token}})
+          .then(function(){
             //put req to this route, with spout data to be removed, then call spouts array
             getSpouts (); //display all spouts
             $scope.newSpout = '' //to clear input field
@@ -51,13 +64,24 @@
 
       //user signin
         $scope.signin = function() {
-          $http.put('/users/signin', {email: $scope.email, password: $scope.password}).then(function(){
+          $http.put('/users/signin', {username: $scope.username, password: $scope.password}).then(function(res){
+            $cookies.put('token', res.data.token);
+            $cookies.put('currentUser', $scope.username);
+            $rootScope.token = res.data.token;
+            $rootScope.currentUser = $scope.username;
             //set up error msgs
-            alert('Sign in success!');
           }, function(err){
             alert('Invalid credentials, please try again.')
           });
         };
+
+        //user signout
+          $scope.signout = function() {
+            $cookies.remove('token');
+            $cookies.remove('currentUser');
+            $rootScope.token = null;
+            $rootScope.currentUser = null;
+          };
 
       // if no new spout
         function getSpouts() {
@@ -69,17 +93,17 @@
         getSpouts ();
       });
 
-    //SignupController setup
+    //Signup Controller setup
       app.controller('SignupController',function($scope, $http){
 
         $scope.submitSignup = function (){
           var newUser = {
-            email: $scope.email,
+            username: $scope.username,
             password: $scope.password,
           };
           $http.post('/users', newUser).then(function(){
             //post req to server for newUser
-            alert('account successfully created!');
+            alert('Sign up success!')
             $scope.newSpout = '' //to clear input field
           });
         }
