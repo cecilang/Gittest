@@ -21,7 +21,7 @@ var userRoutes = require('./routes/user');
 
 var app = express();
 
-mongoose.connect('localhost:27017/amazing')
+mongoose.connect(process.env.MONGODB_URI || 'localhost:27017/amazing')
 require('./config/passport');
 
 // view engine setup

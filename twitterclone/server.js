@@ -10,7 +10,7 @@ var db = null;
 var JWT_SECRET = 'fishspouts';
 
 //connect to mongodb
-MongoClient.connect("mongodb://localhost:27017/spoutsdb", function(err, dbconnect) {
+MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/spoutsdb", function(err, dbconnect) { //specify db on heroku
   if(!err) {
     console.log("connected to mongodb");
     db = dbconnect
@@ -100,6 +100,6 @@ app.put('/users/signin', function(req, res, next) {
   });
 });
 
-app.listen(3000, function(){
+app.listen(process.env.PORT, function(){ //change port for heroku
   console.log('listening...');
 });

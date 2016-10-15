@@ -4,4 +4,5 @@
 
 2. Amazon clone: Made with Nodejs + Express + Handlebars + MongoDB (MEHN) in 3 days
 
-Next up: a twitter clone with Nodejs + Express + Angular + MongoDB (MEAN)
+3. Twitter clone (Betafish Spouts): Made with Nodejs + Express + Angular + MongoDB (MEAN) in 2 days.
+URL: http://betafishspouts.herokuapp.com/#/
