@@ -7,4 +7,4 @@ URL: http://betafishspouts.herokuapp.com/#/
 
 3. Amazon backend clone (Bookstore): Made with Nodejs + Express + Handlebars + MongoDB (MEHN) in 3 days
 
-4. d3 cluster practice: code snippet from an earlier d3 data visualization experiment.
+4. d3 cluster practice: code snippet from an earlier d3 data visualization experiment in AngularJS.
