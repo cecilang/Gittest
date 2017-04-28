@@ -1,0 +1,35 @@
+{
+  "name": "betafishtest",
+  "version": "1.0.70",
+  "description": "Betafish REST APIs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "async": "*",
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-mongo": "*",
+    "cookie-parser": "*",
+    "cors": "*",
+    "cron": "*",
+    "csurf": "*",
+    "express": "*",
+    "express-res-html": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "google-auth-library": "^0.10.0",
+    "googleapis": "^19.0.0",
+    "jwt-simple": "*",
+    "mongojs": "*",
+    "mongoose": "*",
+    "morgan": "*",
+    "passport": "*",
+    "passport-jwt": "*",
+    "path": "*",
+    "request": "*"
+  },
+  "author": "cecil ang",
+  "license": "MIT"
+}
